@@ -141,7 +141,7 @@ const MeterReadingForm: React.FC<MeterReadingFormProps> = ({ database }) => {
       )}
 
       <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <FormControl fullWidth>
             <InputLabel>년도</InputLabel>
             <Select
@@ -155,7 +155,7 @@ const MeterReadingForm: React.FC<MeterReadingFormProps> = ({ database }) => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={6}>
           <FormControl fullWidth>
             <InputLabel>월</InputLabel>
             <Select
@@ -173,7 +173,7 @@ const MeterReadingForm: React.FC<MeterReadingFormProps> = ({ database }) => {
 
       <Grid container spacing={3}>
         {units.map(unit => (
-          <Grid item xs={12} md={6} key={unit.id}>
+          <Grid size={{ xs: 12, md: 6 }} key={unit.id}>
             <Card>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
@@ -195,7 +195,7 @@ const MeterReadingForm: React.FC<MeterReadingFormProps> = ({ database }) => {
                 )}
 
                 <Grid container spacing={2}>
-                  <Grid item xs={6}>
+                  <Grid size={6}>
                     <TextField
                       fullWidth
                       label="전기 검침값 (KWH)"
@@ -205,7 +205,7 @@ const MeterReadingForm: React.FC<MeterReadingFormProps> = ({ database }) => {
                       inputProps={{ min: 0, step: 0.1 }}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid size={6}>
                     <TextField
                       fullWidth
                       label="수도 검침값 (m³)"

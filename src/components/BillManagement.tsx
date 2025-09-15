@@ -339,7 +339,7 @@ const BillManagement: React.FC<BillManagementProps> = ({ database, calculator })
                       )}
 
                       <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid size={{ xs: 6 }}>
                           <TextField
                             fullWidth
                             label="전기 검침값 (KWH)"
@@ -354,7 +354,7 @@ const BillManagement: React.FC<BillManagementProps> = ({ database, calculator })
                             </Typography>
                           )}
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid size={{ xs: 6 }}>
                           <TextField
                             fullWidth
                             label="수도 검침값 (m³)"
@@ -396,7 +396,7 @@ const BillManagement: React.FC<BillManagementProps> = ({ database, calculator })
           </Box>
 
           <Grid container spacing={3} sx={{ mb: 3 }}>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <TextField
                 fullWidth
                 label="전체 관리비 (원)"
@@ -406,7 +406,7 @@ const BillManagement: React.FC<BillManagementProps> = ({ database, calculator })
                 inputProps={{ min: 0 }}
               />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <TextField
                 fullWidth
                 label="전체 전기료 (원)"
@@ -416,7 +416,7 @@ const BillManagement: React.FC<BillManagementProps> = ({ database, calculator })
                 inputProps={{ min: 0 }}
               />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <TextField
                 fullWidth
                 label="전체 수도료 (원)"
@@ -426,7 +426,7 @@ const BillManagement: React.FC<BillManagementProps> = ({ database, calculator })
                 inputProps={{ min: 0 }}
               />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid size={{ xs: 12, md: 3 }}>
               <Box sx={{ mt: 2 }}>
                 <Typography variant="body2" color="text.secondary">
                   공동관리비 (자동계산)

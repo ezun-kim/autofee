@@ -22,6 +22,7 @@ import {
   DialogActions
 } from '@mui/material';
 import { Add as AddIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { type Database as SqlDatabase } from 'sql.js';
 import Database, { type Unit } from '../database/Database';
 
 interface UnitManagementProps {
@@ -84,7 +85,10 @@ const UnitManagement: React.FC<UnitManagementProps> = ({ database, onUnitsChange
       // 직접 SQL 실행
       if (!database) throw new Error('Database not initialized');
       
-      const stmt = database['db'].prepare(`
+      const db = (database as unknown as { db: SqlDatabase }).db;
+      if (!db) throw new Error('Database connection not available');
+      
+      const stmt = db.prepare(`
         INSERT OR REPLACE INTO units (id, name, area) VALUES (?, ?, ?)
       `);
       stmt.run([unitForm.id, unitForm.name, area]);
@@ -114,7 +118,10 @@ const UnitManagement: React.FC<UnitManagementProps> = ({ database, onUnitsChange
       if (!database) throw new Error('Database not initialized');
       
       // 관련 데이터 모두 삭제
-      database['db'].exec(`
+      const db = (database as unknown as { db: SqlDatabase }).db;
+      if (!db) throw new Error('Database connection not available');
+      
+      db.exec(`
         DELETE FROM meter_readings WHERE unit_id = '${unitId}';
         DELETE FROM unit_bills WHERE unit_id = '${unitId}';
         DELETE FROM units WHERE id = '${unitId}';
@@ -230,7 +237,7 @@ const UnitManagement: React.FC<UnitManagementProps> = ({ database, onUnitsChange
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={3} sx={{ mt: 1 }}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 label="호실 ID"
@@ -241,7 +248,7 @@ const UnitManagement: React.FC<UnitManagementProps> = ({ database, onUnitsChange
                 helperText={editingUnit ? "편집 시 변경할 수 없습니다" : "고유한 호실 번호를 입력하세요"}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 label="호실명"
@@ -250,7 +257,7 @@ const UnitManagement: React.FC<UnitManagementProps> = ({ database, onUnitsChange
                 placeholder="예: 101호, 201A호"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <TextField
                 fullWidth
                 label="전용면적 (m²)"
